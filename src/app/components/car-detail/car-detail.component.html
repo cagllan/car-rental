@@ -1,0 +1,27 @@
+<div class="row">
+    <table class="table">
+        <thead>
+          <tr>
+        <th scope="col">#</th>
+        <th scope="col">Marka</th>
+        <th scope="col">Model</th>
+        <th scope="col">Renk</th>
+        <th scope="col">Fiyat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">{{carDetail.carId}}</th>
+            <td>{{carDetail.brandName}}</td>
+            <td>{{carDetail.name}}</td>
+            <td>{{carDetail.colorName}}</td>
+            <td>{{carDetail.dailyPrice}}</td>
+          </tr>                  
+        </tbody>
+      </table>
+</div>
+<div class="row">
+    <div>
+        <img *ngFor="let image of carDetail.carImages" [src]="image.imagePath" class="img-thumbnail" alt="...">
+    </div>
+</div>

@@ -6,6 +6,7 @@
         <th scope="col">Model</th>
         <th scope="col">Renk</th>
         <th scope="col">Fiyat</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -14,7 +15,8 @@
         <td>{{car.brandName}}</td>
         <td>{{car.name}}</td>
         <td>{{car.colorName}}</td>
-        <td>{{car.dailyPrice}}</td>
+        <td >{{car.dailyPrice}}</td>
+        <td ><button routerLink="car/{{car.carId}}" type="button" class="btn btn-secondary btn-sm">Detay</button></td>
       </tr>
     </tbody>
   </table>

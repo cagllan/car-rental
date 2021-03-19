@@ -1,4 +1,21 @@
-<ul class="list-group mt-3">
-    <li class="list-group-item list-group-item-secondary">Renkler</li>
-    <li *ngFor="let color of colors" class="list-group-item">{{color.id}} - {{color.name}}</li>
-</ul>
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          Renkler
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <ul class="list-group list-group-flush">                
+                <li (click)="setCurrentColor(color)" 
+                routerLink="cars/color/{{color.id}}" 
+                *ngFor="let color of colors"                 
+                [class]="getCurrentColorClass(color)">
+                {{color.name}} {{color.id}}
+                </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+</div>
