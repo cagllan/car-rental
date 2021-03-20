@@ -9,7 +9,7 @@
         <div class="accordion-body">
             <ul class="list-group list-group-flush">                
                 <li (click)="setCurrentColor(color)" 
-                routerLink="cars/color/{{color.id}}" 
+                routerLink="/cars/color/{{color.id}}/" 
                 *ngFor="let color of colors"                 
                 [class]="getCurrentColorClass(color)">
                 {{color.name}} {{color.id}}
