@@ -12,6 +12,7 @@ export class CarDetailComponent implements OnInit {
   
   carDetail:Car;
   currentCarId:number;
+  imageUrl = "https://localhost:44323";
   
   constructor(private cardetailService:CarDetailService, private activatedRoute:ActivatedRoute) { }
 

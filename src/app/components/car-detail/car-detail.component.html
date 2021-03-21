@@ -22,6 +22,6 @@
 </div>
 <div class="row">
     <div>
-        <img *ngFor="let image of carDetail.carImages" [src]="image.imagePath" class="img-thumbnail" alt="...">
+        <img *ngFor="let image of carDetail.carImages" [src]="imageUrl+image.imagePath" class="img-thumbnail" alt="...">
     </div>
 </div>
