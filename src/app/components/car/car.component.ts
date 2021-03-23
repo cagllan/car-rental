@@ -11,11 +11,15 @@ import { CarService } from 'src/app/services/car.service';
 export class CarComponent implements OnInit {
 
   cars:Car[];
+  searchText:string;
   
-  constructor(private carService:CarService, private activatedRoute:ActivatedRoute) { }
+  constructor(
+    private carService:CarService, 
+    private activatedRoute:ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
-  
+    
     this.activatedRoute.params.subscribe(params => {      
       if(params["brandId"]){
         this.getCarsByBrand(params["brandId"]);
@@ -25,7 +29,10 @@ export class CarComponent implements OnInit {
         this.getCars();
       }        
      
+      
     });
+
+    
   }
 
   getCars(){

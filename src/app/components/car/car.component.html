@@ -1,3 +1,11 @@
+<div class="mb-3">
+  <label for="searchText" class="form-label">Arama</label>
+  <input type="text" [(ngModel)]="searchText" class="form-control" id="searchText" placeholder="Araba">
+</div>
+<div *ngIf="searchText" class="alert alert-primary">
+ {{searchText}} aradınız!
+</div>
+
 <table class="table">
     <thead>
       <tr>
@@ -10,12 +18,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let car of cars">
+      <tr *ngFor="let car of cars | search:searchText">
         <th scope="row">{{car.carId}}</th>
-        <td>{{car.brandName}}</td>
+        <td>{{car.brandName | uppercase}}</td>
         <td>{{car.name}}</td>
         <td>{{car.colorName}}</td>
-        <td >{{car.dailyPrice}}</td>
+        <td >{{car.dailyPrice}} TL</td>
         <td ><button routerLink="/car/{{car.carId}}" type="button" class="btn btn-secondary btn-sm">Detay</button></td>
       </tr>
     </tbody>
