@@ -13,6 +13,7 @@ import { CarComponent } from './components/car/car.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { SearchPipe } from './pipes/search.pipe';
+import { FilterCarComponent } from './components/filter-car/filter-car.component';
 
 
 
@@ -26,7 +27,8 @@ import { SearchPipe } from './pipes/search.pipe';
     CarComponent,
     RentalComponent,
     CarDetailComponent,
-    SearchPipe
+    SearchPipe,
+    FilterCarComponent
     
   ],
   imports: [
