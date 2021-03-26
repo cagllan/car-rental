@@ -15,4 +15,8 @@ export class RentalService {
   getRentals():Observable<ListResponseModel<Rental>>{
     return this.httpClient.get<ListResponseModel<Rental>>(this.apiUrl);
   }
+
+  getRentalByCarId():Observable<ListResponseModel<Rental>>{
+    return this.httpClient.get<ListResponseModel<Rental>>(this.apiUrl);
+  }
 }

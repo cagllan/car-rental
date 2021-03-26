@@ -1,3 +1,34 @@
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Kirala</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Başlangıç: <input type="date" [(ngModel)]="startCarRentalDate" (change)="setTotalPrice(setTotalDay(startCarRentalDate,endCarRentalDate))" >
+        Bitiş: <input type="date" [(ngModel)]="endCarRentalDate" (change)="setTotalPrice(setTotalDay(startCarRentalDate,endCarRentalDate))">
+        <ul>
+          <li>{{carDetail.brandName}} {{carDetail.name}}</li>
+          <li *ngIf="totalDay && totalPrice">{{totalDay}} gün</li>
+          <li *ngIf="totalDay && totalPrice">toplam fiyat: {{totalPrice}} Tl</li>
+        </ul>
+
+        
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+        <button type="button" class="btn btn-primary" >Aracı Kirala</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
     <table class="table">
         <thead>
@@ -7,6 +38,7 @@
         <th scope="col">Model</th>
         <th scope="col">Renk</th>
         <th scope="col">Fiyat</th>
+        <th></th>
           </tr>
         </thead>
         <tbody>
@@ -16,12 +48,13 @@
             <td>{{carDetail.name}}</td>
             <td>{{carDetail.colorName}}</td>
             <td>{{carDetail.dailyPrice}}</td>
+            <td><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Kirala</button></td>
           </tr>                  
         </tbody>
       </table>
 </div>
-<div class="row">
+<div class="row" >
     <div>
-        <img *ngFor="let image of carDetail.carImages" [src]="imageUrl+image.imagePath" class="img-thumbnail" alt="...">
+        <img *ngFor="let image of carDetail.carImages" [src]="imageUrl+image.imagePath" style="width: 150px;height: 150px;" class="img-thumbnail" alt="...">
     </div>
 </div>

@@ -14,6 +14,7 @@ import { RentalComponent } from './components/rental/rental.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { FilterCarComponent } from './components/filter-car/filter-car.component';
+import { RentalCarComponent } from './components/rental-car/rental-car.component';
 
 
 
@@ -28,14 +29,15 @@ import { FilterCarComponent } from './components/filter-car/filter-car.component
     RentalComponent,
     CarDetailComponent,
     SearchPipe,
-    FilterCarComponent
+    FilterCarComponent,
+    RentalCarComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule   
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
