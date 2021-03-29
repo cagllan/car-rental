@@ -10,20 +10,25 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Başlangıç: <input type="date" [(ngModel)]="startCarRentalDate" (change)="setTotalPrice(setTotalDay(startCarRentalDate,endCarRentalDate))" >
-        Bitiş: <input type="date" [(ngModel)]="endCarRentalDate" (change)="setTotalPrice(setTotalDay(startCarRentalDate,endCarRentalDate))">
-        <ul>
-          <li>{{carDetail.brandName}} {{carDetail.name}}</li>
-          <li *ngIf="totalDay && totalPrice">{{totalDay}} gün</li>
-          <li *ngIf="totalDay && totalPrice">toplam fiyat: {{totalPrice}} Tl</li>
+
+        Başlangıç: <input type="datetime-local" [(ngModel)]="startCarRentalDate"  (change)="totalDateAndTotalPrice()" class="form-control">
+        Bitiş: <input type="datetime-local" [(ngModel)]="endCarRentalDate" min="{{startCarRentalDate}}"(change)="totalDateAndTotalPrice()" class="form-control">
+        
+        <p>{{carDetail.brandName}} {{carDetail.name}}</p>
+        <ul *ngIf="totalDay" class="list-group">
+          <li class="list-group-item">{{totalDay}} gün</li>
+          <li class="list-group-item">toplam fiyat: {{totalPrice}} Tl</li>
         </ul>
+        
+        
 
         
         
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-        <button type="button" class="btn btn-primary" >Aracı Kirala</button>
+        <button type="button" *ngIf="!startCarRentalDate || !endCarRentalDate" class="btn btn-primary" disabled>Aracı Kirala</button>
+        <button type="button" *ngIf="startCarRentalDate && endCarRentalDate" class="btn btn-primary" data-bs-dismiss="modal" (click)="rentAndSetRentInfo()" routerLink="/carrental/payment" >Aracı Kirala</button>
       </div>
     </div>
   </div>
@@ -55,6 +60,6 @@
 </div>
 <div class="row" >
     <div>
-        <img *ngFor="let image of carDetail.carImages" [src]="imageUrl+image.imagePath" style="width: 150px;height: 150px;" class="img-thumbnail" alt="...">
+        <img *ngFor="let image of carDetail.carImages" [src]="imageUrl+[image.imagePath]" style="width: 150px;height: 150px;" class="img-thumbnail" alt="...">
     </div>
 </div>

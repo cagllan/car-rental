@@ -1,37 +1,59 @@
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Bilgiler</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Kiralayan</td>
-            <td>denzel washington</td>
-          </tr>
-      <tr>
-        <td>Araba</td>
-        <td>Bmw</td>
-      </tr>
-      <tr>
-        <td>Başlangıç tarihi</td>
-        <td>4.4.2020</td>
-      </tr>
-      <tr>
-        <td>Bitiş Tarihi</td>
-        <td>6.4.2020</td>
-      </tr>
-      <tr>
-        <td>Gün Sayısı</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>Tutar</td>
-        <td>250</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="row">
+  <div class="col-md-8">
+    
+    <form>
 
-  <button type="button" class="btn btn-secondary btn-sm">Aracı Kirala</button>
+      <div class="mb-3">
+        <label for="card-number" class="form-label">Kart üzerinde yazan Ad Soyad</label>
+        <input type="text" class="form-control" id="card-number" placeholder="">
+      </div>
+
+      <div class="mb-3">
+        <label for="card-number" class="form-label">Kart Numarası</label>
+        <input type="text" class="form-control" id="card-number" placeholder="">
+      </div>
+
+      <div class="row mb-3">
+        <label for="card-number" class="form-label">Geçerlilik Tarihi</label><br>
+        <div class="col-md-4">
+          <label for="card-number" class="form-label">yıl</label>
+          <select class="form-select" aria-label="Default select example">
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="card-number" class="form-label">Ay</label>
+          <select class="form-select" aria-label="Default select example">
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="card-number" class="form-label">ccv</label>
+          <input type="text" class="form-control" id="card-number" placeholder="">
+        </div>
+        
+        
+      </div>
+
+      <button type="button" class="btn btn-secondary btn-sm">Ödeme Yap</button>
+
+    </form>
+  </div>
+  <div class="col-md-4">
+      <ul class="list-group" *ngIf="data.brandName">
+        <li class="list-group-item fw-bold">Kiralama Bilgileri</li>
+        <li class="list-group-item">Kiralayan: Müşteri Adı</li>
+        <li class="list-group-item">Araba: {{data.brandName}}</li>
+        <li class="list-group-item">Başlangıç Tarihi: {{data.startDate}}</li>
+        <li class="list-group-item">Bitiş Tarihi: {{data.endDate}}</li>
+        <li class="list-group-item">Gün Sayısı: {{data.totalDay}}</li>
+        <li class="list-group-item">Tutar: {{data.totalPrice}}</li>
+      </ul>
+      
+  </div>
+</div>
+
+
+  

@@ -1,7 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 import { Car } from 'src/app/models/car';
+import { Rental } from 'src/app/models/rental';
+import { RentalDetail } from 'src/app/models/rentalDetail';
 import { CarDetailService } from 'src/app/services/car-detail.service';
+import { RentalService } from 'src/app/services/rental.service';
+import { SharingServiceService } from 'src/app/services/sharing-service.service';
+
 
 @Component({
   selector: 'app-car-detail',
@@ -10,6 +17,8 @@ import { CarDetailService } from 'src/app/services/car-detail.service';
 })
 export class CarDetailComponent implements OnInit {
   
+  rental:Rental;
+  rentalDetails:RentalDetail;
   carDetail:Car;  
   imageUrl = "https://localhost:44323";
   startCarRentalDate:Date;
@@ -17,12 +26,21 @@ export class CarDetailComponent implements OnInit {
   totalDay:number;
   totalPrice:number;
 
+  carStatus:boolean = true;
+
 
   
-  constructor(private cardetailService:CarDetailService, private activatedRoute:ActivatedRoute) { }
+  constructor(
+    private cardetailService:CarDetailService, 
+    private activatedRoute:ActivatedRoute ,
+    private sharingService:SharingServiceService,
+    private toastrService:ToastrService,
+    private rentalService:RentalService
+    ) { }
   
 
   ngOnInit(): void {
+    
 
     this.activatedRoute.params.subscribe(params => {  
        
@@ -42,23 +60,66 @@ export class CarDetailComponent implements OnInit {
   }
 
   
-setTotalDay(first:Date, second:Date) {
-  let oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-  let firstDate:any = new Date(first);
-  let secondDate:any = new Date(second);
-  
-  let diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+  calculateTotalDay(){
+    var start = new Date(this.endCarRentalDate);
+    var end = new Date(this.startCarRentalDate);
+    var totalSecond = Math.abs( Number(end) -Number(start) ) / 1000;
+    var days_difference = Math.floor(totalSecond / (60 * 60 * 24));     
+    this.totalDay = days_difference===0?1:days_difference;
+    this.toastrService.success("Başlangıç tarihi eklendi", this.startCarRentalDate.toString());
     
-  return this.totalDay = diffDays+1;
+  }
+
+
+  calculateTotalPrice(){
+    this.totalPrice = this.carDetail.dailyPrice;
+
+      if(this.totalPrice===1){
+        this.totalPrice = this.carDetail.dailyPrice;
+      }else{
+        this.totalPrice = this.totalDay * this.carDetail.dailyPrice;
+      }
+    }
+
+
+  totalDateAndTotalPrice(){
+    this.calculateTotalDay();
+    this.calculateTotalPrice();
+  }
+
+  rentalDetail():RentalDetail{
+
+    return this.rentalDetails={
+      brandName:this.carDetail.brandName +" " + this.carDetail.name,
+      carId:this.carDetail.carId,
+      startDate:this.startCarRentalDate,
+      endDate:this.endCarRentalDate,
+      price:this.carDetail.dailyPrice,
+      totalDay:this.totalDay,
+      totalPrice:this.totalPrice
+    }
     
+  }
+
+
+  rentAndSetRentInfo(){
+    this.sharingService.setData(this.rentalDetail());
+    
+
+   this.rentalService.addRental({
+    carId: this.carDetail.carId,
+    customerId: 4,
+    rentDate: this.startCarRentalDate,
+    returnDate:null
+    
+   }).subscribe(response=>{
+     console.log(response.message);
+     console.log(response.success)
+   });
 }
 
-setTotalPrice(totalDay:number){
-  
-  this.totalPrice = totalDay * this.carDetail.dailyPrice;
-}
 
 
 
+  }
 
-}
