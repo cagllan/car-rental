@@ -19,6 +19,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { FilterCarComponent } from './components/filter-car/filter-car.component';
 import { RentalCarComponent } from './components/rental-car/rental-car.component';
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { BrandAddComponent } from './components/brand-add/brand-add.component';
     SearchPipe,
     FilterCarComponent,
     RentalCarComponent,
-    BrandAddComponent
+    BrandAddComponent,
+    BrandUpdateComponent
     
   ],
   imports: [
