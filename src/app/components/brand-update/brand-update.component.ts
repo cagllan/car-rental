@@ -23,25 +23,30 @@ export class BrandUpdateComponent implements OnInit {
     private activatedRoute:ActivatedRoute
   ) { }
 
-  ngOnInit(): void {
-    
-
+  ngOnInit(): void {    
+    this.createBrandUpdateForm();
     this.activatedRoute.params.subscribe(params=>{
       if(params["brandId"]){
         this.getBrandById(params["brandId"]);
-       
       }
+    });
+  }
+
+
+  createBrandUpdateForm(){
+    this.brandUpdateForm = this.formBuilder.group({
+      id : ["", Validators.required],
+      name : ["", [Validators.required, Validators.minLength(2)]]
     });
   }
 
 
   getBrandById(brandId:number){
     this.brandService.getBrandById(brandId).subscribe(response=>{
-
       this.brand = response.data;  
       this.brandUpdateForm = this.formBuilder.group({
-        id : new FormControl(this.brand.id, Validators.required),
-        name : new FormControl(this.brand.name ,Validators.required)        
+        id : new FormControl(this.brand.id),
+        name : new FormControl(this.brand.name)        
       });
 
     });
@@ -50,33 +55,22 @@ export class BrandUpdateComponent implements OnInit {
 
 
   update(){
-
-
-
     if(this.brandUpdateForm.valid){
       let brandModel = Object.assign({}, this.brandUpdateForm.value);
 
-      this.brandService.update(brandModel).subscribe(response=>{
-        
+      this.brandService.update(brandModel).subscribe(response=>{        
         this.toastrService.success(response.message,"Başarılı");
-      }, responseError=> {
-        
+      }, 
+      responseError=> {        
         if(responseError.error.ValidationErrors.length>0){
           for (let i = 0; i < responseError.error.ValidationErrors.length; i++) {
             this.toastrService.error(responseError.error.ValidationErrors[i].ErrorMessage, "Doğrulama Hatası");            
-          }
-          
-        }
-        
-        
+          }          
+        }              
       });
-
-      
     }else{
       this.toastrService.error("Form eksik", "lütfen doldurun");
     }
-    
-    
   }
 
 }

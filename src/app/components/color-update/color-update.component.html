@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="title">Renk</h5>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="colorUpdateForm">
+                <div class="mb-3">
+                    <label for="brandName">Renk Adı</label>
+                    <div class="form-group">
+                        <input type="hidden" id="brandId" formControlName="id" class="form-control" placeholder="" >
+                        <input type="text" id="brandName" formControlName="name" class="form-control" placeholder="Renk adı">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-fill btn-primary" (click)="update()">Güncelle</button>
+        </div>
+    </div>
+    
+</div>

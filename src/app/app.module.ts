@@ -20,6 +20,8 @@ import { FilterCarComponent } from './components/filter-car/filter-car.component
 import { RentalCarComponent } from './components/rental-car/rental-car.component';
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { ColorUpdateComponent } from './components/color-update/color-update.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { BrandUpdateComponent } from './components/brand-update/brand-update.com
     FilterCarComponent,
     RentalCarComponent,
     BrandAddComponent,
-    BrandUpdateComponent
+    BrandUpdateComponent,
+    ColorAddComponent,
+    ColorUpdateComponent
     
   ],
   imports: [
