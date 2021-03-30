@@ -1,44 +1,36 @@
 <div class="row">
-  <div class="col-md-8">
-    
-    <form>
-
+  <div class="col-md-8">    
+    <form [formGroup]="paymentForm">
       <div class="mb-3">
-        <label for="card-number" class="form-label">Kart üzerinde yazan Ad Soyad</label>
-        <input type="text" class="form-control" id="card-number" placeholder="">
+        <label for="user-name" class="form-label">Kart üzerinde yazan Ad Soyad</label>
+        <input type="text" formControlName="fullName" class="form-control" id="user-name" placeholder="">
       </div>
-
       <div class="mb-3">
         <label for="card-number" class="form-label">Kart Numarası</label>
-        <input type="text" class="form-control" id="card-number" placeholder="">
+        <input type="text" formControlName="cardNumber" class="form-control" id="card-number" placeholder="">
       </div>
-
       <div class="row mb-3">
-        <label for="card-number" class="form-label">Geçerlilik Tarihi</label><br>
+        <label class="form-label">Geçerlilik Tarihi</label><br>
         <div class="col-md-4">
-          <label for="card-number" class="form-label">yıl</label>
-          <select class="form-select" aria-label="Default select example">
+          <label for="card-year" class="form-label">yıl</label>
+          <select class="form-select" formControlName="year" id="card-year" aria-label="Default select example">
             <option value="2021">2021</option>
             <option value="2022">2022</option>
           </select>
         </div>
         <div class="col-md-4">
-          <label for="card-number" class="form-label">Ay</label>
-          <select class="form-select" aria-label="Default select example">
+          <label for="card-month" class="form-label">Ay</label>
+          <select class="form-select" formControlName="month" id="card-month" aria-label="Default select example">
             <option value="1">1</option>
             <option value="2">2</option>
           </select>
         </div>
         <div class="col-md-4">
-          <label for="card-number" class="form-label">ccv</label>
-          <input type="text" class="form-control" id="card-number" placeholder="">
+          <label for="card-ccv" class="form-label">ccv</label>
+          <input type="text" formControlName="ccv" class="form-control" id="card-ccv" placeholder="">
         </div>
-        
-        
       </div>
-
-      <button type="button" class="btn btn-secondary btn-sm">Ödeme Yap</button>
-
+      <button type="button" class="btn btn-secondary btn-sm" (click)="addPayment()">Ödeme Yap</button>
     </form>
   </div>
   <div class="col-md-4">

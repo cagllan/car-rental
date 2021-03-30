@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr'; 
-import { Payment } from 'src/app/models/payment';
+import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 import { RentalDetail } from 'src/app/models/rentalDetail';
 import { PaymentService } from 'src/app/services/payment.service';
 import { SharingServiceService } from 'src/app/services/sharing-service.service';
@@ -13,35 +13,51 @@ import { SharingServiceService } from 'src/app/services/sharing-service.service'
 export class RentalCarComponent implements OnInit {
 
   data:RentalDetail;
-  
+  paymentForm:FormGroup;
 
   constructor(
     private sharingService:SharingServiceService,
     private paymentService:PaymentService,
-    private toastrService:ToastrService
-    
+    private toastrService:ToastrService,
+    private formBuilder:FormBuilder    
     ) { }
 
   ngOnInit(): void {
     this.data = this.sharingService.getData();
+    this.createPaymentForm();
   }
 
+  createPaymentForm(){
+    this.paymentForm = this.formBuilder.group({
+      fullName:["", Validators.required],
+      cardNumber: ["", Validators.required],
+      year: ["", Validators.required],
+      month: ["", Validators.required],
+      ccv: ["", Validators.required]
+    });
+  }
 
   addPayment(){
-    
-    let payment:Payment = {
-      cardNumber:"342234567123",
-      ccv : "456",
-      fullName : "Musteri Adi",
-      month : "05",
-      year : "2023"
+    if(this.paymentForm.valid){
+      let paymentModel = Object.assign({}, this.paymentForm.value);
 
+      this.paymentService.addPayment(paymentModel).subscribe(response=>{
+        this.toastrService.success(response.message,"Başarılı");
+        
+      }, responseError=> {
+        if(responseError.error.ValidationErrors.length>0){
+          for (let i = 0; i < responseError.error.ValidationErrors.length; i++) {
+            this.toastrService.error(responseError.error.ValidationErrors[i].ErrorMessage, "Doğrulama Hatası");            
+          }
+          
+        }
+      });
+
+    }else{
+      this.toastrService.error("form eksik","lütfen formu doldurun");
     }
 
-    this.paymentService.addPayment(payment).subscribe(response=>{
-      this.toastrService.success(response.message);
-      
-    });
+    
   }
 
 

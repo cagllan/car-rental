@@ -4,6 +4,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import {ToastrModule} from 'ngx-toastr';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NaviComponent } from './components/navi/navi.component';
@@ -16,10 +18,7 @@ import { CarDetailComponent } from './components/car-detail/car-detail.component
 import { SearchPipe } from './pipes/search.pipe';
 import { FilterCarComponent } from './components/filter-car/filter-car.component';
 import { RentalCarComponent } from './components/rental-car/rental-car.component';
-
-import {ToastrModule} from 'ngx-toastr';
-
-
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
 
 
 @NgModule({
@@ -34,7 +33,8 @@ import {ToastrModule} from 'ngx-toastr';
     CarDetailComponent,
     SearchPipe,
     FilterCarComponent,
-    RentalCarComponent
+    RentalCarComponent,
+    BrandAddComponent
     
   ],
   imports: [
