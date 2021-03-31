@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="title">Araba Ekle</h5>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="carUpdateForm">
+                <input type="hidden" id="carId" class="form-control" formControlName="id">
+                <div class="mb-3">
+                    <label for="carName">Marka</label>
+                    <div class="form-group">                  
+                        <select class="form-select" id="carName" formControlName="brandId" aria-label="Default select example">                                                     
+                            <option *ngFor="let brand of brands" [ngValue]="brand.id">{{brand.name}}</option>                            
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="carDescription">Model</label>
+                    <div class="form-group">
+                        <input type="text" id="carDescription" class="form-control" placeholder="Model" formControlName="description">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="carColor">Renk</label>
+                    <div class="form-group">
+                        <select class="form-select" id="carColor" formControlName="colorId">
+                            <option *ngFor="let color of colors" [ngValue]="color.id">{{color.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="carYear">Yıl</label>
+                    <div class="form-group">
+                        <input type="number" id="carYear" class="form-control" placeholder="Yıl" formControlName="modelYear" min="0"> 
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="carPrice">Günlük Fiyat</label>
+                    <div class="form-group">
+                        <input type="number" id="carPrice" class="form-control" placeholder="Günlük Fiyat" formControlName="dailyPrice" min="0"> 
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-fill btn-primary" (click)="update()">Güncelle</button>
+        </div>
+    </div>
+    
+</div>

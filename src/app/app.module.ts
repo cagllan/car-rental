@@ -23,6 +23,7 @@ import { BrandUpdateComponent } from './components/brand-update/brand-update.com
 import { ColorAddComponent } from './components/color-add/color-add.component';
 import { ColorUpdateComponent } from './components/color-update/color-update.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
+import { CarUpdateComponent } from './components/car-update/car-update.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { CarAddComponent } from './components/car-add/car-add.component';
     BrandUpdateComponent,
     ColorAddComponent,
     ColorUpdateComponent,
-    CarAddComponent
+    CarAddComponent,
+    CarUpdateComponent
     
   ],
   imports: [

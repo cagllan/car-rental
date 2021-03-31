@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { Car } from 'src/app/models/car';
+import { CarDetail } from 'src/app/models/carDetail';
 import { Rental } from 'src/app/models/rental';
 import { RentalDetail } from 'src/app/models/rentalDetail';
 import { CarDetailService } from 'src/app/services/car-detail.service';
@@ -19,7 +19,7 @@ export class CarDetailComponent implements OnInit {
   
   rental:Rental;
   rentalDetails:RentalDetail;
-  carDetail:Car;  
+  carDetail:CarDetail;  
   imageUrl = "https://localhost:44323";
   startCarRentalDate:Date;
   endCarRentalDate:Date;
@@ -108,7 +108,7 @@ export class CarDetailComponent implements OnInit {
 
    this.rentalService.addRental({
     carId: this.carDetail.carId,
-    customerId: 4,
+    customerId: 1,
     rentDate: this.startCarRentalDate,
     returnDate:null
     
