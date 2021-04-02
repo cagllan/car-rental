@@ -2,20 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CarDetail } from '../models/carDetail';
 import { ClassResponseModel } from '../models/classResponseModel';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CarDetailService {
+export class UserService {
 
   apiUrl = environment.apiUrl;
   
   constructor(private httpClient:HttpClient) { }
 
-  getCarDetailById(id:number):Observable<ClassResponseModel<CarDetail>>{
-    let newPath = this.apiUrl + "cars/getcardetailbycarid?id=" + id;
-    return this.httpClient.get<ClassResponseModel<CarDetail>>(newPath);
+  getByMail(email:string):Observable<ClassResponseModel<User>>{
+    let newUrl = this.apiUrl + "users/getbymail";
+    return this.httpClient.post<ClassResponseModel<User>>(newUrl, email);
   }
 }

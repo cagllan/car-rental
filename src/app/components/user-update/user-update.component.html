@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="title">Bilgilerini güncelle</h5>
+        </div>
+        <div class="card-body">
+            <form >
+                <input type="hidden" id="userId" class="form-control" formControlName="id">
+                <div class="mb-3">
+                    <label for="firstName">Ad</label>
+                    <div class="form-group">                  
+                        <input type="text" id="firstName" class="form-control" placeholder="" formControlName="firstName">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName">Soyad</label>
+                    <div class="form-group">
+                        <input type="text" id="lastName" class="form-control" placeholder="" formControlName="lastName">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email">E-posta</label>
+                    <div class="form-group">
+                        <input type="text" id="email" class="form-control" placeholder="" formControlName="email">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="password">Şifre</label>
+                    <div class="form-group">
+                        <input type="password" id="password" class="form-control" placeholder="" formControlName="password"> 
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-fill btn-primary" >Güncelle</button>
+        </div>
+    </div>
+    
+</div>

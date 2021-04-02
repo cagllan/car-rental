@@ -18,12 +18,35 @@
           <li class="nav-item">
             <a class="nav-link" href="#" routerLink="/customers">Müşteriler</a>
           </li>
+        </ul>
+
+
+        <ul class="navbar-nav mb-2 mb-lg-0" *ngIf="!isLogin">
+          <li class="nav-item ms-1">
+            <a class="btn btn-primary" routerLink="/login" role="button">Giriş</a>
+          </li>
+          <li class="nav-item ms-1">
+            <a class="btn btn-dark" routerLink="/register" role="button">Kayıt</a>
+          </li>
           
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+
+        <ul class="navbar-nav mb-2 mb-lg-0 me-3" *ngIf="isLogin===true">
+        <li class="nav-item dropdown me-3">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Ad Soyad
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Bilgiler</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="btn dropdown-item" (click)="logout()">Çıkış</a></li>
+          </ul>
+        </li>
+      </ul>
+
+
+        
+        
       </div>
     </div>
   </nav>

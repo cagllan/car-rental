@@ -6,13 +6,14 @@ import { CarDetail } from '../models/carDetail';
 import { ClassResponseModel } from '../models/classResponseModel';
 import { ResponseModel } from '../models/responseModel';
 import { Car } from '../models/car';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
   
-  apiUrl = "https://localhost:44323/api/";
+  apiUrl = environment.apiUrl;
 
   constructor(private httpClient:HttpClient) { }
 

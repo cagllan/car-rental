@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ListResponseModel } from '../models/listResponseModel';
 import { Rental } from '../models/rental';
 import { RentalDto } from '../models/rentalDto';
@@ -10,7 +11,7 @@ import { ResponseModel } from '../models/responseModel';
   providedIn: 'root'
 })
 export class RentalService {
-  apiUrl = "https://localhost:44323/api/";
+  apiUrl = environment.apiUrl;
   
   constructor(private httpClient:HttpClient) { }
 

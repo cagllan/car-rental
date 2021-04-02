@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ClassResponseModel } from '../models/classResponseModel';
 import { Color } from '../models/color';
 import { ListResponseModel } from '../models/listResponseModel';
@@ -11,7 +12,7 @@ import { ResponseModel } from '../models/responseModel';
 })
 export class ColorService {
 
-  apiUrl = "https://localhost:44323/api/";
+  apiUrl = environment.apiUrl;
 
   constructor(private httpClient:HttpClient) { }
 
