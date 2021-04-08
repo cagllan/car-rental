@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms"
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import {Router} from '@angular/router';
+import { TokenInfoModel } from 'src/app/models/tokenInfoModel';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,8 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+
+  userTokenInfo:TokenInfoModel;
 
   constructor(
     private formBuilder:FormBuilder,
@@ -41,8 +44,17 @@ export class LoginComponent implements OnInit {
       this.authService.login(loginModel).subscribe(response=>{
         this.toastrService.info(response.message);
         localStorage.setItem("token", response.data.token);
-        
+        this.userTokenInfo = Object.assign({}, this.authService.decodedToken());
+
+        console.log(this.userTokenInfo);
+
         location.replace("/");
+        
+        
+
+        
+
+        
         
       }, responseError=> {
 

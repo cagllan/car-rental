@@ -5,7 +5,7 @@ import { RentalDetail } from '../models/rentalDetail';
 @Injectable({
   providedIn: 'root'
 })
-export class SharingServiceService {
+export class SharingService {
   private data:RentalDetail;
   constructor() { }
 

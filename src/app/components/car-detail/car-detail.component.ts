@@ -7,7 +7,7 @@ import { Rental } from 'src/app/models/rental';
 import { RentalDetail } from 'src/app/models/rentalDetail';
 import { CarDetailService } from 'src/app/services/car-detail.service';
 import { RentalService } from 'src/app/services/rental.service';
-import { SharingServiceService } from 'src/app/services/sharing-service.service';
+import { SharingService } from 'src/app/services/sharing.service';
 
 
 @Component({
@@ -28,12 +28,16 @@ export class CarDetailComponent implements OnInit {
 
   carStatus:boolean = true;
 
+  carId:number;
+
+  returnDateIsNull:boolean=false;
+
 
   
   constructor(
     private cardetailService:CarDetailService, 
     private activatedRoute:ActivatedRoute ,
-    private sharingService:SharingServiceService,
+    private sharingService:SharingService,
     private toastrService:ToastrService,
     private rentalService:RentalService
     ) { }
@@ -45,7 +49,11 @@ export class CarDetailComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {  
        
       if(params["carId"]){
+        this.carId = params["carId"];
+        this.chechCarReturnDateNull() 
         this.getCarDetailByCarId(params["carId"]);  
+
+        
       }
       
   });
@@ -116,6 +124,19 @@ export class CarDetailComponent implements OnInit {
      console.log(response.message);
      console.log(response.success)
    });
+}
+
+
+
+chechCarReturnDateNull(){
+  this.rentalService.getRentals().subscribe(response=>{
+    
+    let lastCar = response.data.filter(data => data.carId == this.carId).pop();
+    if(lastCar.returnDate === null){
+      this.returnDateIsNull =true;
+    }
+    
+  });
 }
 
 

@@ -1,8 +1,8 @@
-export interface User{
+export interface UserDto{
     userId:number;
     firstName:string;
     lastName:string;
     email:string;
     findexScore:number;
-    password:string;
+    
 }

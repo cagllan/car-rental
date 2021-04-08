@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenInfoModel } from 'src/app/models/tokenInfoModel';
 import { AuthService } from 'src/app/services/auth.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
@@ -11,6 +12,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 export class NaviComponent implements OnInit {
 
   isLogin:boolean;
+  userTokenInfo:TokenInfoModel;
 
   constructor(
     private authService:AuthService,
@@ -26,6 +28,8 @@ export class NaviComponent implements OnInit {
   showPanel(){
     if(this.authService.isAuthenticated()){
       this.isLogin=true;
+      this.userTokenInfo = Object.assign({}, this.authService.decodedToken());
+      console.log(this.userTokenInfo);
     }else{
       this.isLogin=false;
     }

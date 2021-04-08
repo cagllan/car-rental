@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 import { RentalDetail } from 'src/app/models/rentalDetail';
 import { PaymentService } from 'src/app/services/payment.service';
-import { SharingServiceService } from 'src/app/services/sharing-service.service';
+import { SharingService } from 'src/app/services/sharing.service';
 
 @Component({
   selector: 'app-rental-car',
@@ -16,7 +16,7 @@ export class RentalCarComponent implements OnInit {
   paymentForm:FormGroup;
 
   constructor(
-    private sharingService:SharingServiceService,
+    private sharingService:SharingService,
     private paymentService:PaymentService,
     private toastrService:ToastrService,
     private formBuilder:FormBuilder    

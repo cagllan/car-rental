@@ -29,6 +29,14 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 
+import { JwtModule } from "@auth0/angular-jwt";
+import { UserInfoComponent } from './components/user-info/user-info.component';
+
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
+
 
 @NgModule({
   declarations: [
@@ -51,7 +59,8 @@ import { UserUpdateComponent } from './components/user-update/user-update.compon
     CarUpdateComponent,
     LoginComponent,
     RegisterComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    UserInfoComponent
     
   ],
   imports: [
@@ -63,6 +72,12 @@ import { UserUpdateComponent } from './components/user-update/user-update.compon
     ReactiveFormsModule,
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
+    }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["http://localhost:4200/"]
+      },
     })
     
   ],

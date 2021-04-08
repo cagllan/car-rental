@@ -15,6 +15,9 @@ import { LoginComponent } from './components/login/login.component';
 import { LoginGuard } from './guards/login.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
+import { ProfileGuard } from './guards/profile.guard';
+
 
 
 const routes: Routes = [
@@ -35,7 +38,9 @@ const routes: Routes = [
   {path:"cars/update/:carId", component:CarUpdateComponent, canActivate:[LoginGuard]},
   {path:"login", component:LoginComponent},
   {path:"register", component:RegisterComponent},
-  {path:"user/update", component:UserUpdateComponent}
+  {path:"user/profile/:userId", component:UserInfoComponent, canActivate:[ProfileGuard]},
+  {path:"user/update/:userId", component:UserUpdateComponent, canActivate:[ProfileGuard]},
+
   
 ];
 
